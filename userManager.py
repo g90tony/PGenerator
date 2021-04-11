@@ -30,10 +30,10 @@ def loginUser(email, password):
     
     if(res["status"] == "success"):
         newResponse["status"] = "success"
-        newResponse[data] = resdata
+        # newResponse[data] = res["data"]
         return newResponse
     else:
         newResponse["status"] = "failed"
         return newResponse
     
-    print(resmessage)
+    print(res["message"])

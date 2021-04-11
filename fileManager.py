@@ -29,7 +29,7 @@ def addNewPasswordItem (name, user, password, authenticatedEmail, isAuthenticate
 def getSavedPasswordItems(authenticatedEmail, isAuthenticated):
     if (isAuthenticated):
         try:
-            with open("{}.txt".format(authenticatedEmail)) as savedPassword:
+            with open("./user_files/{}.txt".format(authenticatedEmail)) as savedPassword:
                  newResponse["status"] = "success"
                  newResponse["message"] = "Password fetch successful"
                  return newResponse
@@ -86,15 +86,12 @@ def authenticateUser(email, password):
     try:
         with open("user_authentication.txt", "r+") as authDB:
             existingUsers = authDB.readlines()
-            for existingUser in existingUsers :
-                
+            for existingUser in existingUsers : 
                 requestCredentials = "{}#{}\n".format(email, password)
-                print("existingUser",existingUser)
-                print("requestedCredentials",requestCredentials)
-                
+               
                 if(requestCredentials == existingUser):
                     isAuthenticated = True
-                    savedCredentials = fetchAccountPasswords(email)
+                    savedCredentials = getSavedPasswordItems(email, isAuthenticated)
                    
                     newResponse["status"] = "success"
                     newResponse["message"] = "User logged in successfully"
