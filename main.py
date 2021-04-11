@@ -80,3 +80,29 @@ def createNewUser(email, password):
         newResponse["message"] = "fatalError"
         return newResponse
         
+
+def authenticateUser(email, password):
+    try:
+        with open("user_authentication.txt", "r") as authDB:
+            for existingUser in authDB.split() :
+                requestCredentials = "Email: {}  Password: {}".format(email, password)
+                
+                if(requestCredentials == returningUser):
+                    isAuthenticated = True
+                    savedCredentials = fetchAccountPasswords(email)
+                   
+                    newResponse["status"] = "success"
+                    newResponse["message"] = "User logged in successfully"
+                    return newResponse
+                
+                else:
+                   
+                    newResponse["status"] = "failed"
+                    newResponse["message"] = "Password missmatch"
+                    return newResponse
+                
+    except Exception as e:
+        print(str(e))
+        newResponse["status"] = "failed"
+        newResponse["message"] = "fatalError"
+        return newResponse
