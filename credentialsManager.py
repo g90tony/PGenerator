@@ -1,5 +1,5 @@
-import fileEditor
-import passwordGenerator
+import fileManager
+import passwordGeneratorEngine
 
 class Credentials:
         
