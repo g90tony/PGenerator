@@ -20,3 +20,7 @@ class Credentials:
         newPassword = passwordGenerator.generateNewPassword(passwordLength)
         res = fileEditor.addNewPasswordItem(credentialName, credentialUser, newPassword, self.isAuthenticated)
         print(res["message"])
+        
+    def addExistingCredentialItem(newCredentialName, newCredentialUser, newCredentialPassword):        
+        res =  fileEditor.addNewPasswordItem(credentialName, credentialUser, credentialPassword, self.isAuthenticated)
+        print(res["message"])
