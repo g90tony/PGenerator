@@ -11,7 +11,7 @@ This is password manager that is built on Python. It aims to help users manage t
 To run this app on your computer,
 
 - #### make sure you have python installed
-- #### clone this repository: $ git clone "https://github.com/g90tony/delani-studio"
+- #### clone this repository: $ git clone "https://github.com/g90tony/PGenerator.git"
 - #### unzip and open the folder in your terminal.
 - #### in your terminal type python3 main.py to start the app
 
