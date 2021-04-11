@@ -24,4 +24,24 @@ def addNewPasswordItem (name, user, password, authenticatedEmail, isAuthenticate
             newResponse["status"] = "failed"
             newResponse["message"] = "User not authenticated"
             return newResponse
- 
+
+
+def getSavedPasswordItems(authenticatedEmail, isAuthenticated):
+    if (isAuthenticated):
+        try:
+            with open("{}.txt".format(authenticatedEmail)) as savedPassword:
+                 newResponse["status"] = "success"
+                 newResponse["message"] = "Password fetch successful"
+                 return newResponse
+        
+        except Exception as e:
+            print(str(e))
+            newResponse["status"] = "failed"
+            newResponse["message"] = "fatalError"
+            print("An error occurred in getSavedPassword")
+            return newResponse
+        
+    else: 
+        newResponse["status"] = "failed"
+        newResponse["message"] = "User not authenticated"
+        return newResponse
