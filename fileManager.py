@@ -65,11 +65,12 @@ def createNewUserFile(email, password):
         newResponse["status"] = "failed"
         newResponse["message"] = "fatalError"
         return newResponse
+    
   
 def createNewUser(email, password):
     try:
         with open("user_authentication.txt", "a") as auth_DB:
-            data = auth_DB.write("Email: {}  Password: {} \n".format(email, password))
+            data = auth_DB.write("{}#{}\n".format(email, password))
             newResponse["status"] = "success"
             newResponse["message"] = "User added successfully"
             return newResponse
@@ -83,16 +84,21 @@ def createNewUser(email, password):
 
 def authenticateUser(email, password):
     try:
-        with open("user_authentication.txt", "r") as authDB:
-            for existingUser in authDB.split() :
-                requestCredentials = "Email: {}  Password: {}".format(email, password)
+        with open("user_authentication.txt", "r+") as authDB:
+            existingUsers = authDB.readlines()
+            for existingUser in existingUsers :
                 
-                if(requestCredentials == returningUser):
+                requestCredentials = "{}#{}\n".format(email, password)
+                print("existingUser",existingUser)
+                print("requestedCredentials",requestCredentials)
+                
+                if(requestCredentials == existingUser):
                     isAuthenticated = True
                     savedCredentials = fetchAccountPasswords(email)
                    
                     newResponse["status"] = "success"
                     newResponse["message"] = "User logged in successfully"
+                    newResponse["data"] = savedCredentials
                     return newResponse
                 
                 else:

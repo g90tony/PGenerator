@@ -21,7 +21,7 @@ def landingPage():
 
         newPassword2 = input("Please re-enter the password and pressenter to continue... \n")
 
-        res = authenticationManager.registerNewUser(newEmail, newPassword1, newPassword2)
+        res = userManager.registerNewUser(newEmail, newPassword1, newPassword2)
         if (res["status"] == "success"):
             print("Thank you for creating a new account with us. Please log in to add password items.\n \n")
             landingPage()
@@ -31,19 +31,17 @@ def landingPage():
             landingPage()
 
     elif welcomeInput == "2":
-        print("Please enter your email \n")
-        newEmail = input("Please Enter to continue...")
-
-        print("Please enter your password \n")
-        newPassword1 = input("Please enter to continue...")
+        newEmail = input("Please enter your email and press enter to continue...\n")
+        newPassword1 = input("Please enter your password and press enter to continue...\n")
     
-        res = authenticationManager.registerNewUser(newEmail, newPassword1, newPassword2)
+        res = userManager.loginUser(newEmail, newPassword1)
         
         if (res["status"] == "success"):
             print("Log in Successful \n")
             input("Press enter to continue...")
-            loggedIn()
+            landingPage()
         else:
-            print("Login failed. Please try again or create a new account \n")
+            print("\n Login failed. Please try again or create a new account \n")
+            landingPage()
 
 landingPage()

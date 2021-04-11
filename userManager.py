@@ -4,11 +4,11 @@ newResponse = dict()
 
 def registerNewUser(email, password, password_2):
     if (password != None and  password_2 == password and  email != None):
-       response = fileEditor.createNewUser(email, password)
+       response = fileManager.createNewUser(email, password)
        
        
     if (response["status"] == "success"):
-        res = fileEditor.createNewUserFile(email, password)
+        res = fileManager.createNewUserFile(email, password)
     
         if(res["status"] == "success"):
             newResponse["status"] = "success"
@@ -26,7 +26,7 @@ def registerNewUser(email, password, password_2):
            
             
 def loginUser(email, password):
-    res = fileEditor.authenticateUser(email, password)
+    res = fileManager.authenticateUser(email, password)
     
     if(res["status"] == "success"):
         newResponse["status"] = "success"
