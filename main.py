@@ -66,3 +66,17 @@ def createNewUserFile(email, password):
     newResponse["message"] = "fatalError"
     return newResponse
   
+def createNewUser(email, password):
+    try:
+        with open("user_authentication.txt", "a") as auth_DB:
+            data = auth_DB.write("Email: {}  Password: {} \n".format(email, password))
+            newResponse["status"] = "success"
+            newResponse["message"] = "User added successfully"
+            return newResponse
+    
+    except Exception as e:
+        print(str(e))
+        newResponse["status"] = "failed"
+        newResponse["message"] = "fatalError"
+        return newResponse
+        
