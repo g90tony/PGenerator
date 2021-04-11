@@ -45,3 +45,24 @@ def getSavedPasswordItems(authenticatedEmail, isAuthenticated):
         newResponse["status"] = "failed"
         newResponse["message"] = "User not authenticated"
         return newResponse
+    
+    
+def createNewUserFile(email, password):
+    try:
+    if (path.exists("./user_files/{}.txt".format(email))):
+            newResponse["status"] = "failed"
+            newResponse["message"] = "Please use another email address. That one already exists"
+            return newResponse
+    
+    else: 
+        with open("./user_files/{}.txt".format(email), "w+") as newTable:
+            newResponse["status"] = "success"
+            newResponse["message"] = "Account created successfully"
+            return newResponse
+           
+   except Exception as e:
+    print(str(e))
+    newResponse["status"] = "failed"
+    newResponse["message"] = "fatalError"
+    return newResponse
+  
