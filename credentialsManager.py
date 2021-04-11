@@ -12,6 +12,11 @@ class Credentials:
             
     def loadPasswords():
         res = fileEditor.getSavedPasswordItems() 
-    if(res["status"] == "success"):
-        self.savedPasswords = res.data
-    print(res["message"])
+        if(res["status"] == "success"):
+            self.savedPasswords = res.data
+        print(res["message"])
+        
+    def createNewCredentialItem(newCredentialName, newCredentialUser, passwordLength):
+        newPassword = passwordGenerator.generateNewPassword(passwordLength)
+        res = fileEditor.addNewPasswordItem(credentialName, credentialUser, newPassword, self.isAuthenticated)
+        print(res["message"])
