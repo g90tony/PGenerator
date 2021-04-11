@@ -23,4 +23,17 @@ def registerNewUser(email, password, password_2):
       return newResponse
     
     print(res["message"])
+           
             
+def loginUser(email, password):
+    res = fileEditor.authenticateUser(email, password)
+    
+    if(res["status"] == "success"):
+        newResponse["status"] = "success"
+        newResponse[data] = resdata
+        return newResponse
+    else:
+        newResponse["status"] = "failed"
+        return newResponse
+    
+    print(resmessage)
