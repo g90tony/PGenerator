@@ -8,3 +8,10 @@ class Credentials:
             self.email = email
             self.password = password
             self.savedPasswords = []
+            
+            
+    def loadPasswords():
+        res = fileEditor.getSavedPasswordItems() 
+    if(res["status"] == "success"):
+        self.savedPasswords = res.data
+    print(res["message"])
