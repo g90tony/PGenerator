@@ -1,22 +1,20 @@
-import fileManager
-
 class User:
-    def __init__(self):
-        self.email = None
-        self.password = None
+    def __init__(self, userEmail, userPassword):
+        self.email = userEmail
+        self.password = userPassword
         self.savedPasswords = list()
     
     newResponse = dict()          
                 
-    def setUserCredential(email, password):
-        self.email = email
-        self.password = password
+    def setUserCredential(self, userEmail, userPassword):
+        self.email = userEmail
+        self.password = userPassword
         
-    def loadSavedPasswords(passwords):
+    def loadSavedPasswords(selfpasswords):
         self.savedPasswords = passwords
         
-    def getUserEmail:
-        userData["email"] = self.email
-        
-    def getSavedPassword:
-        userData["passwords"] = self.savedPasswords
+    def getUserEmail(self):
+        return self.email
+    
+    def getSavedPassword(self):
+        return self.password
