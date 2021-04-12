@@ -1,45 +1,38 @@
 import fileManager
 import passwordGeneratorEngine
 
-class Credentials:
-    def __init__(self, email):
-            self.isAuthenticated = False
-            self.email = email
-            self.savedPasswords = []
-            
-    @staticmethod
     def generateVerifiedPassword(pass_length):
        return passwordGeneratorEngine.generateNewPassword(pass_length)
             
     # @staticmethod
-    def loadPasswords(self):
-        res = fileManager.getSavedPasswordItems(self.email, self.isAuthenticated) 
-        if(res["status"] == "success"):
-            self.savedPasswords = res.data
-        print(res["message"])
-      
-      
-    @staticmethod  
-    def createNewCredentialItem(newCredentialName, newCredentialUser, passwordLength, email):
+    def loadPasswords(userEmail):
+        try:
+            with open("./user_files/{}.txt".format(userEmail)) as savedPassword:
+                
         
-        newResponse = dict()
-        
-        newPassword = passwordGeneratorEngine.generateNewPassword(passwordLength)
-        res = fileManager.addNewPasswordItem(newCredentialName, newCredentialUser, newPassword, email)
-        
-        if res["status"] == "success":
-            newResponse["status"] = "success"
-            newResponse["data"] = newPassword
-            return newResponse
-            
-        else:
+        except Exception as e:
+            print(str(e))
             newResponse["status"] = "failed"
-            return newResponse
-        
-        print(res["message"])
+      
+      
+  
+    def createNewCredentialItem(newCredentialName, newCredentialUser, passwordLength, userEmail):
+        try:
+            generatedPassword = generateVerifiedPassword(passwordLength)
+            with open("./user_files/{}.txt".format(email), "a") as authenticatedOperation :
+                newEntry = "{}#{}#{}".format(newCredentialName, newCredentialUser, password)
+                authenticatedOperation.write(newEntry)
+                
+                newResponse["status"] = "success"
+                newResponse["data"] = entry
+                return newResponse
+
+        except Exception as e:
+            print(str(e))
+            newResponse["status"] = "failed"
+            return newResponse  
         
     
-    @staticmethod
+
     def addExistingCredentialItem(newCredentialName, newCredentialUser, newCredentialPassword, userEmail):     
-        res =  fileManager.addNewPasswordItem(newCredentialName, newCredentialUser, newCredentialPassword, userEmail)
-        print(res["message"])
+        
