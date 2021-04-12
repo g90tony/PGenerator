@@ -63,7 +63,7 @@ def loggedIn(currentUser):
             items = res["data"]
             
             for item in items:
-                print("Platform: {} Username: {} Password: {}".format(item["id"], item["username"], item["password"])) 
+                print("Platform: {} \n\tUsername: {} \n\tPassword: {}".format(item["id"], item["username"], item["password"])) 
         
         loggedIn(currentUser)
         

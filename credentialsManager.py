@@ -9,7 +9,6 @@ def loadPasswords(userEmail):
     newResponse = dict()
     try:
         with open("./user_files/{}.txt".format(userEmail)) as savedPassword:
-            counter = 0
             passwordArr = list()
             newResponse = dict()
             for password in savedPassword:
@@ -20,8 +19,8 @@ def loadPasswords(userEmail):
                 passwordItem["username"] = passowrdsAttributes[1]
                 passwordItem["password"] = passowrdsAttributes[2]
                 
-                passwordArr[counter] = passwordItem
-                counter+= 1
+                passwordArr.append(passwordItem)
+                
                 
             newResponse["status"] = "success"
             newResponse["data"] = passwordArr
