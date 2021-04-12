@@ -2,28 +2,23 @@ from os import path
 
 newResponse = dict()
 
-def addNewPasswordItem (name, user, password, authenticatedEmail, isAuthenticated):
-    if (isAuthenticated):
-        try:
-            with open("{}.txt".format(authenticatedEmail), "a") as authenticatedOperation :
-                newEntry = "{}#{}#{}".format(name, user, password)
-                authenticatedOperation.write()
-               
-                newResponse["status"] = "success"
-                newResponse["message"] = "Item added successfully"
-                return newResponse
-    
-        except Exception as e:
-            print(str(e))
-            newResponse["status"] = "failed"
-            newResponse["message"] = "fatalError"
-            print("An error occurred in addPasswordItem")
+def addNewPasswordItem (name, user, password, email):
+    try:
+        with open("./user_files/{}.txt".format(email), "a") as authenticatedOperation :
+            newEntry = "{}#{}#{}".format(name, user, password)
+            authenticatedOperation.write(newEntry)
+            
+            newResponse["status"] = "success"
+            newResponse["message"] = "Item added successfully"
             return newResponse
+
+    except Exception as e:
+        print(str(e))
+        newResponse["status"] = "failed"
+        newResponse["message"] = "fatalError"
+        return newResponse
     
-    else:
-            newResponse["status"] = "failed"
-            newResponse["message"] = "User not authenticated"
-            return newResponse
+
 
 
 def getSavedPasswordItems(authenticatedEmail, isAuthenticated):
@@ -85,9 +80,8 @@ def createNewUser(email, password):
 def authenticateUser(email, password):
     try:
         with open("user_authentication.txt", "r+") as authDB:
-            existingUsers = authDB.readlines()
-            for existingUser in existingUsers : 
-                requestCredentials = "{}#{}\n".format(email, password)
+            requestCredentials = "{}#{}\n".format(email, password)
+            for existingUser in authDB : 
                
                 if(requestCredentials == existingUser):
                     isAuthenticated = True
@@ -99,7 +93,6 @@ def authenticateUser(email, password):
                     return newResponse
                 
                 else:
-                   
                     newResponse["status"] = "failed"
                     newResponse["message"] = "Password missmatch"
                     return newResponse
