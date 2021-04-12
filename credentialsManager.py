@@ -1,38 +1,72 @@
-import fileManager
 import passwordGeneratorEngine
 
-    def generateVerifiedPassword(pass_length):
-       return passwordGeneratorEngine.generateNewPassword(pass_length)
-            
-    # @staticmethod
-    def loadPasswords(userEmail):
-        try:
-            with open("./user_files/{}.txt".format(userEmail)) as savedPassword:
-                
-        
-        except Exception as e:
-            print(str(e))
-            newResponse["status"] = "failed"
-      
-      
-  
-    def createNewCredentialItem(newCredentialName, newCredentialUser, passwordLength, userEmail):
-        try:
-            generatedPassword = generateVerifiedPassword(passwordLength)
-            with open("./user_files/{}.txt".format(email), "a") as authenticatedOperation :
-                newEntry = "{}#{}#{}".format(newCredentialName, newCredentialUser, password)
-                authenticatedOperation.write(newEntry)
-                
-                newResponse["status"] = "success"
-                newResponse["data"] = entry
-                return newResponse
 
-        except Exception as e:
-            print(str(e))
-            newResponse["status"] = "failed"
-            return newResponse  
+def generateVerifiedPassword(pass_length):
+    return passwordGeneratorEngine.generateNewPassword(pass_length)
         
+
+def loadPasswords(userEmail):
+    newResponse = dict()
+    try:
+        with open("./user_files/{}.txt".format(userEmail)) as savedPassword:
+            counter = 0
+            passwordArr = list()
+            newResponse = dict()
+            for password in savedPassword:
+                passwordItem = dict()
+                passowrdsAttributes = password.split(" ## ")
+                
+                passwordItem["id"] = passowrdsAttributes[0]
+                passwordItem["username"] = passowrdsAttributes[1]
+                passwordItem["password"] = passowrdsAttributes[2]
+                
+                passwordArr[counter] = passwordItem
+                counter+= 1
+                
+            newResponse["status"] = "success"
+            newResponse["data"] = passwordArr
+            return newResponse
+            
+    
+    except Exception as e:
+        print(str(e))
+        newResponse["status"] = "failed"
+        return newResponse
+
+
+def createNewCredentialItem(newCredentialName, newCredentialUser, passwordLength, userEmail):
+    newResponse = dict()
+    try:
+        generatedPassword = generateVerifiedPassword(passwordLength)
+        with open("./user_files/{}.txt".format(userEmail), "a") as authenticatedOperation :
+            newEntry = "{} ## {} ## {}".format(newCredentialName, newCredentialUser, generatedPassword)
+            authenticatedOperation.write("{}\n".format(newEntry))
+            responseText = "The credentials for {} have been successfully generated. \n username: {} \n password:{}".format(newCredentialName, newCredentialUser, generatedPassword )
+            newResponse["status"] = "success"
+            newResponse["data"] = responseText
+            return newResponse
+
+    except Exception as e:
+        print(str(e))
+        newResponse["status"] = "failed"
+        return newResponse  
     
 
-    def addExistingCredentialItem(newCredentialName, newCredentialUser, newCredentialPassword, userEmail):     
-        
+
+
+def addExistingCredentialItem(newCredentialName, newCredentialUser, newCredentialPassword, userEmail):   
+    newResponse = dict()
+    try:
+        with open("./user_files/{}.txt".format(userEmail), "a") as authenticatedOperation :
+            newEntry = "{}#{}#{}".format(newCredentialName, newCredentialUser, newCredentialPassword)
+            authenticatedOperation.write("{}\n".format(newEntry))
+            responseText = "The credentials for {} have been successfully generated. \n username: {} \n password: {}".format(newCredentialName.upper(), newCredentialUser, newCredentialPassword)
+            newResponse["status"] = "success"
+            newResponse["data"] = responseText
+            return newResponse
+
+    except Exception as e:
+        print(str(e))
+        newResponse["status"] = "failed"
+        return newResponse  
+    
