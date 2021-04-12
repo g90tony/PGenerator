@@ -7,7 +7,7 @@ def registerNewUser(email, password, password_2):
        response = fileManager.createNewUser(email, password)
        
        
-    if (response["status"] == "success"):
+    if (response["status"] == "success") :
         res = fileManager.createNewUserFile(email, password)
     
         if(res["status"] == "success"):
@@ -27,10 +27,8 @@ def registerNewUser(email, password, password_2):
             
 def loginUser(email, password):
     res = fileManager.authenticateUser(email, password)
-    
     if(res["status"] == "success"):
         newResponse["status"] = "success"
-        # newResponse[data] = res["data"]
         return newResponse
     else:
         newResponse["status"] = "failed"
