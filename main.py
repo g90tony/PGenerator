@@ -47,7 +47,7 @@ def landingPage():
             
        
 def loggedIn(currentUser):
-    authenticatedInput = input("Welcome back. Select an option to continue \n 1: List saved passwords \n 2:  Generate a new account credentials \n 3: Add an existing account credentials. \n 4: Genereate a secure password \n 5: Logout\n Press enter to continue...\n")
+    authenticatedInput = input("Welcome back. Select an option to continue \n 1: List saved passwords \n 2: Generate a new account credentials \n 3: Add an existing account credentials. \n 4: Genereate a secure password \n 5: Logout\n Press enter to continue...\n")
 
 
     if authenticatedInput != '1' and authenticatedInput != '2' and authenticatedInput != '3' and authenticatedInput != '4'  and authenticatedInput != '5':

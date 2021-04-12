@@ -5,9 +5,7 @@ def loginUser(userEmail, userPassword):
     try:
         with open("user_authentication.txt", "r+") as authDB:
             requestCredentials = "{}#{}\n".format(userEmail, userPassword)
-            for existingUser in authDB : 
-                print("checking logged user:",existingUser)
-                
+            for existingUser in authDB :               
                 if(requestCredentials == existingUser):                   
                     newResponse["status"] = "success"
                     return newResponse
