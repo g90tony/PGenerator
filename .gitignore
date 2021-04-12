@@ -1,2 +1,4 @@
 user_authentication.txt
 user_files
+*.txt
+__pycache__
