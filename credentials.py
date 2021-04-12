@@ -4,7 +4,7 @@ class Credentials:
         self.accountUsername = None
         self.accountPassword = None
           
-    def createCredential(self, id, username, password):
+    def createNewCredential(self, id, username, password):
         self.accountID = id
         self.accountUsername = username
         self.accountPassword = password
