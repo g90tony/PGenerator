@@ -32,7 +32,7 @@ def registerNewUser(email, password, password_2):
             if (path.exists("./user_files/{}.txt".format(email))):
                 newResponse["status"] = "failed"
                 raise Exception("Please use another email address. That one already exists")
-    
+
             else: 
                 with open("./user_files/{}.txt".format(email), "w+") as newTable:
                     newResponse["status"] = "success"

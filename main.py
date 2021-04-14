@@ -1,11 +1,19 @@
+import os 
+
 import authenticator
 import user
 import credentialsManager
 import credentials
-    
 
     
 def landingPage():
+    try:
+        os.mkdir("./user_files/")
+        
+    except Exception as e:
+        print(e)
+        
+        
     welcomeInput = input("Welcome to Pasword Keeper. Select an option to continue \n 1: Create a new account \n 2: Login into an existing account.\nPress enter to continue... \n")
 
 
