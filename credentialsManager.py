@@ -57,7 +57,7 @@ def addExistingCredentialItem(newCredentialName, newCredentialUser, newCredentia
     newResponse = dict()
     try:
         with open("./user_files/{}.txt".format(userEmail), "a") as authenticatedOperation :
-            newEntry = "{}#{}#{}".format(newCredentialName, newCredentialUser, newCredentialPassword)
+            newEntry = "{} ## {} ## {}".format(newCredentialName, newCredentialUser, newCredentialPassword)
             authenticatedOperation.write("{}\n".format(newEntry))
             responseText = "The credentials for {} have been successfully generated. \n username: {} \n password: {}".format(newCredentialName.upper(), newCredentialUser, newCredentialPassword)
             newResponse["status"] = "success"
